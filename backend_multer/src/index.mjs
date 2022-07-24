@@ -39,10 +39,6 @@ const upload = multer({ dest: UPLOADS_FOLDER });
 const app = express();
 try {
   const jsonParser = express.json();
-  //app.use(requestLog);
-  //app.post(PATH_PREFIX+"/users/", jsonParser, postUserController);
-
-  //upload.single('photo')
 
   app.use(express.json())
   app.use('/', express.static('../02_01_frontend_clientes/build', { index: "index.html" }));
@@ -133,24 +129,10 @@ try {
     }
   })
 
-  //2. Uso del token
-  app.get(PATH_PREFIX + "/secretos/", authMiddleware, (req, res) => {
-    res.send(`El secreto de la vida, el universo y de todo: 42`)
-  })
-
-
 
   app.listen(process.env.PORT || 3000, () => {
     console.log("Express running...");
   });
-
-  //Imagenes Multer
-  /* app.post(PATH_PREFIX + "/uploadOnePhoto/", upload.single('photo'), (req, res) => {
-     console.log("File:", req.file)
-     console.log("Body:", req.body)
-     res.sendStatus(201)
-   })
- */
 
 } catch (err) {
   console.error(err);
